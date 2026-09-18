@@ -1,0 +1,2 @@
+# MalaysiaHazeIndex
+MalaysiaHazeIndex
