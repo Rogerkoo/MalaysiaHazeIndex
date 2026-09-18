@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="Malaysia air pollution index dashboard powered by APIMS.">
+  <title>Malaysia Haze Dashboard</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">MALAYSIA AIR QUALITY</div>
+      <h1>Haze Dashboard</h1>
+      <p class="subtitle">Quick view of APIMS readings for locations you choose.</p>
+    </div>
+    <button id="refreshBtn" class="icon-button" type="button" title="Refresh readings" aria-label="Refresh readings">↻</button>
+  </header>
+
+  <main class="container">
+    <section class="toolbar">
+      <label class="search">
+        <span class="sr-only">Search locations</span>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="Search cities, locations or stations…">
+      </label>
+      <div id="searchResults" class="search-results hidden"></div>
+    </section>
+
+    <section class="summary-row">
+      <div>
+        <strong id="locationCount">0</strong>
+        <span>saved locations</span>
+      </div>
+      <div class="updated">
+        <span>Updated</span>
+        <strong id="lastUpdated">—</strong>
+      </div>
+    </section>
+
+    <div id="message" class="message hidden" role="status"></div>
+
+    <section id="cards" class="cards" aria-live="polite"></section>
+
+    <section class="legend">
+      <h2>API guide</h2>
+      <div class="legend-grid">
+        <span><i class="dot good"></i>0–50 Good</span>
+        <span><i class="dot moderate"></i>51–100 Moderate</span>
+        <span><i class="dot unhealthy"></i>101–200 Unhealthy</span>
+        <span><i class="dot very-unhealthy"></i>201–300 Very Unhealthy</span>
+        <span><i class="dot hazardous"></i>&gt;300 Hazardous</span>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Data source: Malaysia Department of Environment (DOE) APIMS.
+        <a href="https://eqms.doe.gov.my/APIMS/main" target="_blank" rel="noopener noreferrer">APIMS</a>
+        ·
+        <a href="https://aqicn.org/network/my.apims/" target="_blank" rel="noopener noreferrer">AQICN APIMS network</a>
+      </p>
+      <p class="small">Readings are station-based. “Location” refers to the APIMS monitoring location.</p>
+    </footer>
+  </main>
+
+  <template id="cardTemplate">
+    <article class="card">
+      <div class="card-head">
+        <div>
+          <h2 class="location"></h2>
+          <p class="state"></p>
+        </div>
+        <button class="remove" type="button" title="Remove location" aria-label="Remove location">×</button>
+      </div>
+
+      <div class="api-row">
+        <div class="api-number">—</div>
+        <div>
+          <div class="class-badge">—</div>
+          <div class="pollutant"></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-title">Activity guidance</div>
+        <div class="activity-text"></div>
+      </div>
+
+      <div class="details">
+        <span class="station"></span>
+        <span class="reading-time"></span>
+      </div>
+    </article>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
