@@ -3,7 +3,7 @@
 // The Worker keeps the DOE APIMS request server-side and can cache it.
 
 const CONFIG = {
-  API_BASE_URL: "https://YOUR-WORKER.workers.dev/api/apims",
+  API_BASE_URL: "https://malaysiahazeindex.rogerktj.workers.dev/api/apims",
   REFRESH_MS: 5 * 60 * 1000,
   STORAGE_KEY: "malaysia-haze-dashboard.locations",
 
