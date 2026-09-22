@@ -125,8 +125,16 @@ async function fetchStations() {
 
 function formatReadingTime(timestamp) {
   if (!timestamp) return "Reading time unavailable";
+
   const date = new Date(timestamp);
   if (Number.isNaN(date.getTime())) return "Reading time unavailable";
+
+  const now = Date.now();
+  const futureThresholdMs = 12 * 60 * 60 * 1000;
+  if (date.getTime() > now + futureThresholdMs) {
+    return "Reading time unavailable";
+  }
+
   return date.toLocaleString("en-MY", {
     dateStyle: "medium",
     timeStyle: "short"
